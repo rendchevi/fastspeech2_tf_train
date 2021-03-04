@@ -1,0 +1,2 @@
+tensorflow-tts-preprocess --rootdir ./datasets/TITML-IDN-LJ --outdir ./datasets/TF-TITML-IDN-LJ --config ./config/ljspeech_preprocess.yaml --dataset ljspeech
+tensorflow-tts-normalize --rootdir ./datasets/TF-TITML-IDN-LJ --outdir ./datasets/TF-TITML-IDN-LJ --config ./config/ljspeech_preprocess.yaml --dataset ljspeech

@@ -1,0 +1,2 @@
+CUDA_VISIBLE_DEVICES=0 python3 extract_duration.py --rootdir ./datasets/TF-TITML-IDN-LJ/train/ --outdir ./datasets/TF-TITML-IDN-LJ/train/durations/ --checkpoint ./checkpoints/tacotron2-120000.h5 --use-norm 1 --config ./config/tacotron2.v1.yaml --batch-size 16 --win-front 3 --win-back 3
+CUDA_VISIBLE_DEVICES=0 python3 extract_duration.py --rootdir ./datasets/TF-TITML-IDN-LJ/valid/ --outdir ./datasets/TF-TITML-IDN-LJ/valid/durations/ --checkpoint ./checkpoints/tacotron2-120000.h5 --use-norm 1 --config ./config/tacotron2.v1.yaml --batch-size 16 --win-front 3 --win-back 3
