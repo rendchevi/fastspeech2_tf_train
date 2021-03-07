@@ -37,7 +37,7 @@ import tensorflow_tts
 from fastspeech2_dataset import CharactorDurationF0EnergyMelDataset
 from train_fastspeech import FastSpeechTrainer
 from tensorflow_tts.configs import FastSpeech2Config
-from tensorflow_tts.models import TFFastSpeech2
+from tensorflow_tts.models import TFFastSpeech2, TFFastSpeechEmbeddings
 from tensorflow_tts.optimizers import AdamWeightDecay, WarmUp
 from tensorflow_tts.trainers import Seq2SeqBasedTrainer
 from tensorflow_tts.utils import calculate_2d_loss, calculate_3d_loss, return_strategy
@@ -360,8 +360,10 @@ def main():
 
     with STRATEGY.scope():
         # define model
+        fastspeech2_config = FastSpeech2Config(**config["fastspeech2_params"])
+
         fastspeech = TFFastSpeech2(
-            config=FastSpeech2Config(**config["fastspeech2_params"])
+            config=fastspeech2_config
         )
         fastspeech._build()
         fastspeech.summary()
@@ -370,6 +372,16 @@ def main():
             logging.info(
                 f"Successfully loaded pretrained weight from {args.pretrained}."
             )
+
+        # re-define embedding
+        NEW_VOCAB_SIZE = 44 # 149 -> LJSpeech-mapper, 44 -> TPI-mapper
+        fastspeech2_config.vocab_size = NEW_VOCAB_SIZE
+        new_embedding_layers = TFFastSpeechEmbeddings(fastspeech2_config, name='embeddings')
+        fastspeech.embeddings = new_embedding_layers
+
+        # re-build model
+        fastspeech._build()
+        fastspeech.summary()
 
         # AdamW for fastspeech
         learning_rate_fn = tf.keras.optimizers.schedules.PolynomialDecay(
