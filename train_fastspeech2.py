@@ -37,7 +37,8 @@ import tensorflow_tts
 from fastspeech2_dataset import CharactorDurationF0EnergyMelDataset
 from train_fastspeech import FastSpeechTrainer
 from tensorflow_tts.configs import FastSpeech2Config
-from tensorflow_tts.models import TFFastSpeech2, TFFastSpeechEmbeddings
+from tensorflow_tts.models import TFFastSpeech2
+from tensorflow_tts.models.fastspeech import TFFastSpeechEmbeddings
 from tensorflow_tts.optimizers import AdamWeightDecay, WarmUp
 from tensorflow_tts.trainers import Seq2SeqBasedTrainer
 from tensorflow_tts.utils import calculate_2d_loss, calculate_3d_loss, return_strategy
