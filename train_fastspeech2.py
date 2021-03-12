@@ -374,8 +374,9 @@ def main():
                 f"Successfully loaded pretrained weight from {args.pretrained}."
             )
 
+	'''
         # re-define embedding
-        NEW_VOCAB_SIZE = 44 # 149 -> LJSpeech-mapper, 44 -> TPI-mapper
+        NEW_VOCAB_SIZE = 149 # 149 -> LJSpeech-mapper, 44 -> TPI-mapper
         fastspeech2_config.vocab_size = NEW_VOCAB_SIZE
         new_embedding_layers = TFFastSpeechEmbeddings(fastspeech2_config, name='embeddings')
         fastspeech.embeddings = new_embedding_layers
@@ -383,6 +384,7 @@ def main():
         # re-build model
         fastspeech._build()
         fastspeech.summary()
+        '''
 
         # AdamW for fastspeech
         learning_rate_fn = tf.keras.optimizers.schedules.PolynomialDecay(
