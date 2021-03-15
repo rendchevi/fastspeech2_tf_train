@@ -374,7 +374,7 @@ def main():
                 f"Successfully loaded pretrained weight from {args.pretrained}."
             )
 
-	'''
+        '''
         # re-define embedding
         NEW_VOCAB_SIZE = 149 # 149 -> LJSpeech-mapper, 44 -> TPI-mapper
         fastspeech2_config.vocab_size = NEW_VOCAB_SIZE
