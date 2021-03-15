@@ -1,1 +1,3 @@
+#!/usr/bin/sh
+
 CUDA_VISIBLE_DEVICES=0 python train_fastspeech2.py --train-dir ./datasets/TF-TITML-IDN-LJ/train/ --dev-dir ./datasets/TF-TITML-IDN-LJ/valid/ --outdir ./content/drive/My Drive/FastSpeech2/checkpoints/fastspeech2_ind_a1 --config ./config/fastspeech2.v1.yaml --use-norm 1 --f0-stat ./datasets/TF-TITML-IDN-LJ/stats_f0.npy --energy-stat ./datasets/TF-TITML-IDN-LJ/stats_energy.npy --mixed_precision 1 --pretrained ./content/drive/My Drive/FastSpeech2/pretrained/fastspeech2-v1-150000.h5 --resume ""
